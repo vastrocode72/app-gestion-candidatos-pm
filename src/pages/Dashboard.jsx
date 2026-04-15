@@ -1,37 +1,9 @@
+import Sidebar from "../components/Sidebar"
 const Dashboard = () => {
   return (
     <div className="min-h-screen bg-white text-slate-900">
       <div className="grid min-h-screen grid-cols-[280px_1fr]">
-        <aside className="flex h-screen flex-col border-r border-slate-200 bg-white">
-          <div className="border-b border-slate-200 px-5 py-5">
-            <div className="flex items-center gap-3">
-              <div className="grid h-10 w-10 place-items-center rounded-xl bg-blue-600/10 ring-1 ring-blue-700/15">
-                <span className="text-sm font-semibold text-blue-800">JZ</span>
-              </div>
-              <div className="leading-tight">
-                <p className="text-sm font-semibold tracking-tight text-blue-900">Jaime Zapata</p>
-                <p className="text-xs text-slate-500">Administrador</p>
-              </div>
-            </div>
-          </div>
-
-          <nav className="flex flex-1 flex-col gap-2 px-3 py-4 text-sm">
-            <div className="cursor-pointer rounded-xl bg-blue-50 px-3 py-2 font-medium text-blue-800 ring-1 ring-blue-700/10">
-              Tablero
-            </div>
-            <div className="cursor-pointer rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50">Usuarios</div>
-            <div className="cursor-pointer rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50">Ofertas</div>
-            <div className="cursor-pointer rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50">Postulantes</div>
-
-            <button
-              type="button"
-              className="mt-auto w-full cursor-pointer rounded-xl border border-slate-200 bg-white px-3 py-2 text-left text-sm font-medium text-blue-800 hover:bg-slate-50"
-            >
-              Cerrar sesión
-            </button>
-          </nav>
-        </aside>
-
+        <Sidebar />
         <main className="h-screen overflow-auto">
           <div className="flex min-h-full flex-col bg-slate-50 px-6 py-6">
             <header className="flex flex-col gap-3 border-b border-slate-200 pb-5 md:flex-row md:items-end md:justify-between">

@@ -1,15 +1,39 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { end_points } from "../services/api"
+import { redirectAlert } from "../helpers/alerts"
+import { saveLocalStorage } from "../helpers/local-storage"
 
 const Login = () => {
   const [user, setUser] = useState("")
   const [password, setPassword] = useState("")
   const [remember, setRemember] = useState(false)
+  const [users, setUsers] = useState([])
+
+  function getUsers() {
+    fetch(end_points.users)
+      .then((response) => response.json())
+      .then((data) => setUsers(data))
+      .catch((error) => console.log(error))
+  }
+
+  useEffect(() => {
+    getUsers()
+  }, [])
+
+  function findUser() {
+    let auth = users.find((item) => user == item.username && password == item.password)
+    return auth
+  }
 
   function signIn(e) {
     e.preventDefault()
-    if (user === "" || password === "") return alert("Login or password is empty")
-    if (user === "admin" && password === "admin") return alert("Welcome admin")
-    if (user !== "admin" || password !== "admin") return alert("Login or password is incorrect")
+    if (user === "" || password === "") return redirectAlert("Campos Vacíos", "El campo usuario y/o contraseña está vacío", "/login", "warning")
+    if (findUser()) {
+      saveLocalStorage("user", findUser())
+      redirectAlert("Bienvenido al aistema", "Será redireccionado al dashboard", "/dashboard", "success")
+      return
+    }
+    if (findUser() == undefined) return redirectAlert("Error de credenciales", "Usuario y/o conttaseña incorrecto", "/login", "error")
   }
 
   return (
