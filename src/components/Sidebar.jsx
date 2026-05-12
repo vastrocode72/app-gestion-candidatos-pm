@@ -1,5 +1,6 @@
 import { redirectAlert } from "../helpers/alerts"
 import { getLocalStorage, removeLocalStorage } from "../helpers/local-storage"
+import { Link } from "react-router-dom"
 
 const Sidebar = () => {
   let user = JSON.parse(getLocalStorage("user"))
@@ -23,12 +24,12 @@ const Sidebar = () => {
       </div>
 
       <nav className="flex flex-1 flex-col gap-2 px-3 py-4 text-sm">
-        <div className="cursor-pointer rounded-xl bg-blue-50 px-3 py-2 font-medium text-blue-800 ring-1 ring-blue-700/10">
+        <Link to="board/" className="cursor-pointer rounded-xl bg-blue-50 px-3 py-2 font-medium text-blue-800 ring-1 ring-blue-700/10">
           Tablero
-        </div>
-        <div className="cursor-pointer rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50">Usuarios</div>
-        <div className="cursor-pointer rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50">Ofertas</div>
-        <div className="cursor-pointer rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50">Postulantes</div>
+        </Link>
+        {/* <Link to="" className="cursor-pointer rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50">Usuarios</Link> */}
+        <Link to="offers/" className="cursor-pointer rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50">Ofertas</Link>
+        <Link to="candidates/" className="cursor-pointer rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50">Postulantes</Link>
 
         <button
           onClick={logout}
