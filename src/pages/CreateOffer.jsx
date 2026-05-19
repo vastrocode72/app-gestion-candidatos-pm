@@ -1,6 +1,24 @@
 import { Link } from "react-router-dom";
+import { end_points } from "../services/api";
 
 function CreateOffer() {
+  function createOffer(e) {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData);
+    data.postedAt = new Date();
+    data.techStack = formData.getAll("techStack");
+
+    fetch(end_points.offers, {
+      method: "POST",
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then(() => {
+        window.location.href = "/dashboard/offers/";
+      });
+  }
+
   return (
     <section className="mt-6">
       <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
@@ -19,7 +37,7 @@ function CreateOffer() {
           </Link>
         </div>
 
-        <form className="mt-6 grid gap-4 md:grid-cols-2">
+        <form onSubmit={createOffer} className="mt-6 grid gap-4 md:grid-cols-2">
           <div className="grid gap-2">
             <label className="text-xs font-medium text-slate-600">ID</label>
             <input
@@ -53,7 +71,9 @@ function CreateOffer() {
           </div>
 
           <div className="grid gap-2">
-            <label className="text-xs font-medium text-slate-600">Empresa</label>
+            <label className="text-xs font-medium text-slate-600">
+              Empresa
+            </label>
             <input
               type="text"
               name="company"
@@ -61,9 +81,10 @@ function CreateOffer() {
               className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 outline-none ring-blue-700/20 focus:ring-2"
             />
           </div>
-
           <div className="grid gap-2">
-            <label className="text-xs font-medium text-slate-600">Ubicación</label>
+            <label className="text-xs font-medium text-slate-600">
+              Ubicación
+            </label>
             <input
               type="text"
               name="location"
@@ -73,7 +94,9 @@ function CreateOffer() {
           </div>
 
           <div className="grid gap-2">
-            <label className="text-xs font-medium text-slate-600">Modalidad</label>
+            <label className="text-xs font-medium text-slate-600">
+              Modalidad
+            </label>
             <select
               name="modality"
               className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 outline-none ring-blue-700/20 focus:ring-2"
@@ -85,7 +108,9 @@ function CreateOffer() {
           </div>
 
           <div className="grid gap-2">
-            <label className="text-xs font-medium text-slate-600">Senioridad</label>
+            <label className="text-xs font-medium text-slate-600">
+              Senioridad
+            </label>
             <select
               name="seniority"
               className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 outline-none ring-blue-700/20 focus:ring-2"
@@ -150,43 +175,93 @@ function CreateOffer() {
             </label>
             <div className="grid gap-2 rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700 md:grid-cols-2">
               <label className="flex items-center gap-2">
-                <input type="checkbox" name="techStack" value="Node.js" className="h-4 w-4" />
+                <input
+                  type="checkbox"
+                  name="techStack"
+                  value="Node.js"
+                  className="h-4 w-4"
+                />
                 Node.js
               </label>
               <label className="flex items-center gap-2">
-                <input type="checkbox" name="techStack" value="TypeScript" className="h-4 w-4" />
+                <input
+                  type="checkbox"
+                  name="techStack"
+                  value="TypeScript"
+                  className="h-4 w-4"
+                />
                 TypeScript
               </label>
               <label className="flex items-center gap-2">
-                <input type="checkbox" name="techStack" value="JavaScript" className="h-4 w-4" />
+                <input
+                  type="checkbox"
+                  name="techStack"
+                  value="JavaScript"
+                  className="h-4 w-4"
+                />
                 JavaScript
               </label>
               <label className="flex items-center gap-2">
-                <input type="checkbox" name="techStack" value="PostgreSQL" className="h-4 w-4" />
+                <input
+                  type="checkbox"
+                  name="techStack"
+                  value="PostgreSQL"
+                  className="h-4 w-4"
+                />
                 PostgreSQL
               </label>
               <label className="flex items-center gap-2">
-                <input type="checkbox" name="techStack" value="MySQL" className="h-4 w-4" />
+                <input
+                  type="checkbox"
+                  name="techStack"
+                  value="MySQL"
+                  className="h-4 w-4"
+                />
                 MySQL
               </label>
               <label className="flex items-center gap-2">
-                <input type="checkbox" name="techStack" value="MongoDB" className="h-4 w-4" />
+                <input
+                  type="checkbox"
+                  name="techStack"
+                  value="MongoDB"
+                  className="h-4 w-4"
+                />
                 MongoDB
               </label>
               <label className="flex items-center gap-2">
-                <input type="checkbox" name="techStack" value="Redis" className="h-4 w-4" />
+                <input
+                  type="checkbox"
+                  name="techStack"
+                  value="Redis"
+                  className="h-4 w-4"
+                />
                 Redis
               </label>
               <label className="flex items-center gap-2">
-                <input type="checkbox" name="techStack" value="Docker" className="h-4 w-4" />
+                <input
+                  type="checkbox"
+                  name="techStack"
+                  value="Docker"
+                  className="h-4 w-4"
+                />
                 Docker
               </label>
               <label className="flex items-center gap-2">
-                <input type="checkbox" name="techStack" value="Kubernetes" className="h-4 w-4" />
+                <input
+                  type="checkbox"
+                  name="techStack"
+                  value="Kubernetes"
+                  className="h-4 w-4"
+                />
                 Kubernetes
               </label>
               <label className="flex items-center gap-2">
-                <input type="checkbox" name="techStack" value="AWS" className="h-4 w-4" />
+                <input
+                  type="checkbox"
+                  name="techStack"
+                  value="AWS"
+                  className="h-4 w-4"
+                />
                 AWS
               </label>
             </div>
@@ -200,7 +275,7 @@ function CreateOffer() {
               Cancelar
             </Link>
             <button
-              type="button"
+              type="submit"
               className="rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800"
             >
               Crear oferta
